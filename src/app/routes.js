@@ -1,5 +1,4 @@
-export default application => ({
-  ...application,
+export default () => ({
   routes: [
     {
       method: 'get',

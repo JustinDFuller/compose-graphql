@@ -14,7 +14,6 @@ const dependencies = {
   bunyan,
 };
 
-export default config => ({
-  ...config,
+export default () => ({
   dependencies,
 });

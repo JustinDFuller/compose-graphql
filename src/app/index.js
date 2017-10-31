@@ -14,8 +14,6 @@ export default ({ routes, env, dependencies, log }) => {
   app.listen(port, () => log.info(`App listening on ${port}`));
 
   return {
-    env,
-    dependencies,
     app,
   };
 }
