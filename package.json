@@ -26,6 +26,7 @@
   "homepage": "https://github.com/JustinDFuller/compose-app#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "bunyan": "^1.8.12",
     "compression": "^1.7.1",
     "express": "^4.16.2",
     "helmet": "^3.9.0",
