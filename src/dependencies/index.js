@@ -4,6 +4,7 @@ import express from 'express';
 import compression from 'compression';
 import helmet from 'helmet';
 import bunyan from 'bunyan';
+import immutable from 'immutable';
 
 const dependencies = {
   _,
@@ -12,6 +13,7 @@ const dependencies = {
   compression,
   helmet,
   bunyan,
+  immutable,
 };
 
 export default () => ({
