@@ -1,14 +1,13 @@
 import _ from 'lodash';
 import fp from 'lodash/fp';
-import { fromJS } from 'immutable';
 
-import config from './config';
-import dependencies from './dependencies';
-import routes from './app/routes';
 import app from './app';
+import routes from './app/routes';
 import logs from './logs';
+import dependencies from './dependencies';
+import config from './config';
 
-const application = [
+const composedApp = [
   app,
   routes,
   logs,
@@ -26,7 +25,7 @@ const mergeFreeze = fp.compose(
  * The result of each function will be merged with the result of the next.
  * So each function doesn't have to worry about modifying or adding the lasts result.
  */
-_.reduceRight(application, (app, method) => {
+_.reduceRight(composedApp, (app, method) => {
   return mergeFreeze(
     {},
     app,
