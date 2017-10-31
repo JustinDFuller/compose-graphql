@@ -20,15 +20,15 @@ const mergeFreeze = fp.compose(
   _.merge
 );
 
+const accumulator = (app, method) => mergeFreeze(
+  {},
+  app,
+  method(app)
+);
+
 /**
  * reduceRight will work the same as fp.compose (right to left).
  * The result of each function will be merged with the result of the next.
  * So each function doesn't have to worry about modifying or adding the lasts result.
  */
-_.reduceRight(composedApp, (app, method) => {
-  return mergeFreeze(
-    {},
-    app,
-    method(app)
-  );
-}, {});
+_.reduceRight(composedApp, accumulator, {});
