@@ -2,7 +2,7 @@ export default application => ({
   ...application,
   routes: [
     {
-      method: 'GET',
+      method: 'get',
       url: '*',
       callback: (req, res) => res.send('Hello world'),
     },
