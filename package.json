@@ -1,0 +1,39 @@
+{
+  "name": "compose-app",
+  "version": "1.0.0",
+  "description": "Create an app with function composition",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel src --out-dir dist && node dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinDFuller/compose-app.git"
+  },
+  "keywords": [
+    "functional",
+    "node",
+    "composition",
+    "javascript",
+    "application"
+  ],
+  "author": "Justin Fuller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustinDFuller/compose-app/issues"
+  },
+  "homepage": "https://github.com/JustinDFuller/compose-app#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "compression": "^1.7.1",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
