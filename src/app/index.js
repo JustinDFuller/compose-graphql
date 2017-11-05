@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { callAndCombine } from '../utils';
 import create from './create';
 import middleware from './middleware';
@@ -11,4 +12,4 @@ const server = [
   create,
 ];
 
-export default (appConfig) => callAndCombine(appConfig, server);
+export default _.partialRight(callAndCombine, server);
