@@ -1,10 +1,11 @@
+import middleware from './middleware';
+
 export default ({ routes, env, dependencies, log }) => {
   const { _ } = dependencies;
   const port = env.port || 8080;
   const app = dependencies.express();
   
-  app.use(dependencies.helmet());
-  app.use(dependencies.compression());
+  middleware({ app, dependencies });
   
   routes.forEach(route => {
      app[_.lowerCase(route.method)](route.url, route.callback);
