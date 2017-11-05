@@ -26,12 +26,15 @@
   "homepage": "https://github.com/JustinDFuller/compose-app#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "bufferutil": "^3.0.3",
     "bunyan": "^1.8.12",
     "compression": "^1.7.1",
     "express": "^4.16.2",
     "helmet": "^3.9.0",
     "immutable": "^3.8.2",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "utf-8-validate": "^3.0.4",
+    "ws": "^3.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

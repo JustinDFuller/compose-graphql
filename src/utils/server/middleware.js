@@ -1,4 +1,4 @@
-export default ({ app, dependencies }) => {
-  app.use(dependencies.helmet());
-  app.use(dependencies.compression());
+export default ({ server, dependencies }) => {
+  server.use(dependencies.helmet());
+  server.use(dependencies.compression());
 };

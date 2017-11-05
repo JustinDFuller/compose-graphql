@@ -3,7 +3,7 @@ export default ({ log }) => ({
     {
       method: 'get',
       url: '*',
-      callback: (req, res) => {
+      callback: (req, res, next, websockets) => {
         log.debug('Hello world');
         return res.send('Hello world');
       },

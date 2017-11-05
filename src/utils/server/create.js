@@ -1,3 +1,3 @@
 export default ({ dependencies }) => ({
-  app: dependencies.express(),
+  server: dependencies.express(),
 });

@@ -1,3 +1,4 @@
+import ws from 'ws';
 import _ from 'lodash';
 import fp from 'lodash/fp';
 import express from 'express';
@@ -8,6 +9,7 @@ import immutable from 'immutable';
 
 const dependencies = {
   _,
+  ws,
   fp,
   express,
   compression,
