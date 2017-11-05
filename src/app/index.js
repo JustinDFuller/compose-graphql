@@ -1,20 +1,14 @@
+import { callAndCombine } from '../utils';
+import create from './create';
 import middleware from './middleware';
+import router from './router';
+import listen from './listen';
 
-export default ({ routes, env, dependencies, log }) => {
-  const { _ } = dependencies;
-  const port = env.port || 8080;
-  const app = dependencies.express();
-  
-  middleware({ app, dependencies });
-  
-  routes.forEach(route => {
-     app[_.lowerCase(route.method)](route.url, route.callback);
-     log.info(`Route created ${route.url} for method ${route.method}`);
-  });
-  
-  app.listen(port, () => log.info(`App listening on ${port}`));
+const server = [
+  listen,
+  router,
+  middleware,
+  create,
+];
 
-  return {
-    app,
-  };
-}
+export default (appConfig) => callAndCombine(appConfig, server);
