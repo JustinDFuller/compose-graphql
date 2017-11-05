@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { callAndCombine } from '../utils';
+import { callAndCombine } from '../';
 import create from './create';
 import middleware from './middleware';
 import router from './router';

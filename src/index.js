@@ -1,9 +1,9 @@
 import { callAndCombine } from './utils';
-import server from  './server';
+import server from  './utils/server';
 import routes from './routes';
-import logger from './logger';
-import dependencies from './dependencies';
-import config from './config';
+import logger from './utils/logger';
+import dependencies from './utils/dependencies';
+import config from './utils/config';
 
 // Called from bottom to top (right to left, composition style).
 const composedApp = [
