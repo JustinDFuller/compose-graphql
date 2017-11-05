@@ -1,6 +1,8 @@
+import 'babel-polyfill';
 import { callAndCombine } from './utils';
 import server from  './utils/server';
 import routes from './routes';
+import sockets from './sockets';
 import logger from './utils/logger';
 import dependencies from './utils/dependencies';
 import config from './utils/config';
@@ -9,6 +11,7 @@ import config from './utils/config';
 const composedApp = [
   server,
   routes,
+  sockets,
   logger,
   dependencies,
   config,
