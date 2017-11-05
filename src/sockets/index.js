@@ -1,5 +1,5 @@
 export default ({ log, dependencies }) => ({
-  routes: [
+  sockets: [
     {
       name: 'echo',
       callback: ({ websockets }, data) => {

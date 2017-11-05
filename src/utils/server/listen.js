@@ -1,3 +1,3 @@
-export default ({ server, env, log }) => {
-  server.listen(env.port, () => log.info(`Server listening on ${env.port}`));
+export default ({ httpServer, env, log }) => {
+  httpServer.listen(env.port, () => log.info(`Server listening on ${env.port}`));
 }

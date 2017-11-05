@@ -2,7 +2,7 @@ export default ({ log, dependencies }) => ({
   routes: [
     {
       method: 'get',
-      url: '*',
+      url: '/',
       callback: (req, res, next, websockets) => {
         websockets.broadcast = function broadcast(data) {
           websockets.clients.forEach(function each(client) {
