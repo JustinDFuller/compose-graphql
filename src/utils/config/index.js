@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 export default () => {
   const config = {
     env: JSON.parse(JSON.stringify(process.env)),

@@ -7,17 +7,24 @@ import bunyan from 'bunyan';
 import immutable from 'immutable';
 import io from 'socket.io';
 import http from 'http';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import cookieSession from 'cookie-session';
+import Promise from 'bluebird';
 
 const dependencies = {
   _,
   io,
   fp,
-  express,
-  compression,
   helmet,
   bunyan,
+  express,
   immutable,
-  http,
+  bodyParser,
+  compression,
+  cookieParser,
+  cookieSession,
+  http: Promise.promisifyAll(http, { context: http }),
 };
 
 export default () => ({
