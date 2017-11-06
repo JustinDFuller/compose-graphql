@@ -4,7 +4,7 @@ export default ({ log, dependencies }) => ({
       method: 'get',
       url: '/',
       callback: (req, res, next, websockets) => {
-        websockets.emit('chat message', 'Hello World!');
+        websockets.emit('echo back', 'Hello World!');
 
         log.debug('Hello world');
         return res.send('Hello world');

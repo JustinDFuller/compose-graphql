@@ -3,14 +3,8 @@ export default ({ log, dependencies }) => ({
     {
       name: 'echo',
       callback: ({ websockets }, data) => {
-        websockets.emit('echo test', data);
+        websockets.emit('echo back', data);
       },
     },
-    {
-      name: 'chat message',
-      callback: ({ websockets }, data) => {
-        websockets.emit('chat message', data);
-      },
-    }
   ],
 });
