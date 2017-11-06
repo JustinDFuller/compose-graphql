@@ -3,9 +3,14 @@ export default (appConfig) => {
   const { _, io, http } = dependencies;
   const httpServer = http.Server(server);
   const websockets = io(httpServer);
+
   websockets.on('connection', socket => {
-    log.info('New log connection');
-    sockets.forEach(handler => socket.on(handler.name, _.partial(handler.callback, appConfig)));
+    log.info('New socket connection');
+    sockets.forEach(handler => socket.on(handler.name, _.partial(handler.callback, {
+      websockets,
+      httpServer,
+      ...appConfig,
+    })));
   });
 
   return {

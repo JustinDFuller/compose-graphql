@@ -6,5 +6,11 @@ export default ({ log, dependencies }) => ({
         websockets.emit('echo test', data);
       },
     },
+    {
+      name: 'chat message',
+      callback: ({ websockets }, data) => {
+        websockets.emit('chat message', data);
+      },
+    }
   ],
 });
