@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Using Cookie Session.</title>
+  </head>
+  <body>
+    <h1 id="welcome">Welcome</h1>
+    <p>Enter your name in the text box below, hit send, then refresh your page. Your name will be remembered.</p>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <br />
+    <p>Click the button below to see that your name will be forgotten on page reload.</p>
+    <button id="logout">Log Out</button>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        $.ajax('/user').then(function(response) {
+          $('#welcome').text('Welcome ' + response);
+        });
+        
+        $('#logout').on('click', function() {
+          $('#welcome').text('Welcome Guest');
+          $.ajax('/logout');
+        });
+        
+        $('form').on('submit', function(){
+          const value = $('#m').val();
+          $('#welcome').text('Welcome ' + value);
+          $.ajax('/login', {
+            method: 'post',
+            data: {
+              name: value,
+            }
+          });
+          return false;
+        });
+      });
+    </script>
+  </body>
+</html>
