@@ -4,7 +4,9 @@ export default ({ log, dependencies }) => ({
       method: 'post',
       url: '/login',
       callback: (req, res, next, websockets) => {
-        req.session.name = req.body.name;
+        console.log(req.body.name, req.session);
+        req.session.userId = "1";
+        console.log(req.session);
         return res.send();
       },
     },
