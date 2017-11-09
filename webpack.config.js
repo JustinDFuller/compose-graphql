@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -7,19 +8,36 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body',
   // minify: true,
   // cache: true,
-})
+});
 
 module.exports = {
+  devtool: 'source-map',
   entry: path.join(__dirname, '/src/public/index.js'),
   output: {
     path: path.join( __dirname, '/dist/public'),
-    filename: 'bundle.js'
+    filename: 'public/bundle.js'
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ }
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+            presets: [
+              "stage-0",
+              ["env", {
+                "targets": {
+                  "browsers": ["last 2 versions"]
+                }
+              }],
+              "react"
+            ]
+        }
+      },
     ]
   },
-  plugins: [HtmlWebpackPluginConfig]
-}
+  plugins: [
+    HtmlWebpackPluginConfig,
+  ],
+};

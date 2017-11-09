@@ -11,7 +11,9 @@ export default class Sessions extends React.Component {
   }
   
   componentDidMount() {
-    fetch('/user')
+    fetch('/user', {
+      credentials: 'include',
+    })
     .then(res => res.text())
     .then(name => this.setState({
       name,
@@ -34,6 +36,7 @@ export default class Sessions extends React.Component {
     
     fetch('/login', {
       headers: { "Content-Type": "application/json" },
+      credentials: 'include',
       method: 'post',
       body: JSON.stringify({
         name,
@@ -47,7 +50,9 @@ export default class Sessions extends React.Component {
       input: '',
       name: 'Guest',
     });
-    fetch('/logout');
+    fetch('/logout', {
+      credentials: 'include',
+    });
   }
 
   render() {

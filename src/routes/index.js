@@ -1,12 +1,12 @@
+import client from './client';
+
 export default ({ log, dependencies }) => ({
   routes: [
     {
       method: 'post',
       url: '/login',
       callback: (req, res, next, websockets) => {
-        console.log(req.body.name, req.session);
-        req.session.userId = "1";
-        console.log(req.session);
+        req.session.name = req.body.name;
         return res.send();
       },
     },
@@ -28,11 +28,7 @@ export default ({ log, dependencies }) => ({
     {
       method: 'get',
       url: '/',
-      callback: (req, res, next, websockets) => {
-        websockets.emit('echo back', 'Hello World!');
-        log.info('User Session', req.session);
-        return res.send('Hello world');
-      },
+      callback: client({ log, dependencies }),
     },
   ],
 });

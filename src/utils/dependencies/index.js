@@ -10,12 +10,18 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
+import fs from 'fs';
+import path from 'path';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import Promise from 'bluebird';
 
 const dependencies = {
   _,
   io,
   fp,
+  path,
+  React,
   helmet,
   bunyan,
   express,
@@ -24,6 +30,8 @@ const dependencies = {
   compression,
   cookieParser,
   cookieSession,
+  ReactDOMServer,
+  fs: Promise.promisifyAll(fs, { context: fs }),
   http: Promise.promisifyAll(http, { context: http }),
 };
 

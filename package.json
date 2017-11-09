@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel src --out-dir dist --copy-files --source-maps && webpack && node dist"
+    "start": "babel src --out-dir dist --copy-files --source-maps && webpack && node dist",
+    "prod": "babel src --out-dir dist --copy-files --source-maps && webpack -p && node dist"
   },
   "repository": {
     "type": "git",
