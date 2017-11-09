@@ -1,4 +1,5 @@
 import React from 'react';
+import fetch from './../services/fetch';
 
 export default class Sessions extends React.Component {
   constructor(props) {
@@ -11,9 +12,7 @@ export default class Sessions extends React.Component {
   }
   
   componentDidMount() {
-    fetch('/user', {
-      credentials: 'include',
-    })
+    fetch('/user')
     .then(res => res.text())
     .then(name => this.setState({
       name,
@@ -36,7 +35,6 @@ export default class Sessions extends React.Component {
     
     fetch('/login', {
       headers: { "Content-Type": "application/json" },
-      credentials: 'include',
       method: 'post',
       body: JSON.stringify({
         name,
@@ -50,9 +48,7 @@ export default class Sessions extends React.Component {
       input: '',
       name: 'Guest',
     });
-    fetch('/logout', {
-      credentials: 'include',
-    });
+    fetch('/logout');
   }
 
   render() {
