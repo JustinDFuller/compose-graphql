@@ -10,7 +10,7 @@ export default modelDefinitions => async (appConfig) => {
     await database.sync();
     log.info('Database synced successfully.');
   } catch (e) {
-    log.error('Error initializing database', err);
+    log.error('Error initializing database', e);
   }
 
   return {
