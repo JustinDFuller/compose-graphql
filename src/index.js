@@ -11,13 +11,13 @@ import config from './utils/config';
 
 // Called from bottom to top (right to left, composition style).
 const composedApp = [
-    server,
-    routes,
-    sockets,
-    database(models),
-    logger,
-    dependencies,
-    config,
+  server,
+  routes,
+  sockets,
+  database(models),
+  logger,
+  dependencies,
+  config,
 ];
 
 

@@ -18,25 +18,25 @@ import Promise from 'bluebird';
 import Sequelize from 'sequelize';
 
 const dependencies = {
-    _,
-    io,
-    fp,
-    path,
-    React,
-    helmet,
-    bunyan,
-    express,
-    Sequelize,
-    immutable,
-    bodyParser,
-    compression,
-    cookieParser,
-    cookieSession,
-    ReactDOMServer,
-    fs: Promise.promisifyAll(fs, { context: fs }),
-    http: Promise.promisifyAll(http, { context: http }),
+  _,
+  io,
+  fp,
+  path,
+  React,
+  helmet,
+  bunyan,
+  express,
+  Sequelize,
+  immutable,
+  bodyParser,
+  compression,
+  cookieParser,
+  cookieSession,
+  ReactDOMServer,
+  fs: Promise.promisifyAll(fs, { context: fs }),
+  http: Promise.promisifyAll(http, { context: http }),
 };
 
 export default () => ({
-    dependencies,
+  dependencies,
 });

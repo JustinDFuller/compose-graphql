@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "babel src --out-dir dist --copy-files --source-maps && webpack && node dist",
         "prod": "babel src --out-dir dist --copy-files --source-maps && webpack -p && node dist",
-        "dev": "concurrently \"babel-watch src\" \"webpack --watch --progress\" "
+        "dev": "concurrently \"babel-watch src\" \"webpack --watch --progress\" ",
+        "lint": "eslint ./src/**/*.js --fix"
     },
     "repository": {
         "type": "git",
@@ -55,6 +56,11 @@
         "babel-preset-stage-0": "^6.24.1",
         "babel-watch": "^2.0.7",
         "concurrently": "^3.5.0",
+        "eslint": "^4.9.0",
+        "eslint-config-airbnb": "^16.1.0",
+        "eslint-plugin-import": "^2.7.0",
+        "eslint-plugin-jsx-a11y": "^6.0.2",
+        "eslint-plugin-react": "^7.4.0",
         "html-webpack-plugin": "^2.30.1",
         "webpack": "^3.8.1",
         "webpack-dev-server": "^2.9.4"
