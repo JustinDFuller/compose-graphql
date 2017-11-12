@@ -1,5 +1,19 @@
-export default ({ log, dependencies }) => ({
+export default ({ log, dependencies, models }) => ({
     routes: [{
+            method: 'get',
+            url: '/user/:id',
+            callback: (req, res, next, websockets) => {
+                models.User.findById(req.params.id).then(user => res.json(user));
+            },
+        },
+        {
+            method: 'post',
+            url: '/user',
+            callback: (req, res, next, websockets) => {
+                models.User.upsert(req.body).then(user => res.json(user));
+            },
+        },
+        {
             method: 'post',
             url: '/login',
             callback: (req, res, next, websockets) => {
