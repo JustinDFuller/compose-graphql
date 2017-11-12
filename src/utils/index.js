@@ -2,14 +2,13 @@ import _ from 'lodash';
 import fp from 'lodash/fp';
 
 const mergeFreeze = fp.compose(
-  Object.freeze,
-  _.merge
+    Object.freeze,
+    _.merge
 );
 
-const accumulator = (method, app) => mergeFreeze(
-  {},
-  app,
-  method(app)
+const accumulator = (method, app) => mergeFreeze({},
+    app,
+    method(app)
 );
 
 /**

@@ -1,56 +1,62 @@
 {
-  "name": "compose-app",
-  "version": "1.0.0",
-  "description": "Create an app with function composition",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel src --out-dir dist --copy-files --source-maps && webpack && node dist",
-    "prod": "babel src --out-dir dist --copy-files --source-maps && webpack -p && node dist"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JustinDFuller/compose-app.git"
-  },
-  "keywords": [
-    "functional",
-    "node",
-    "composition",
-    "javascript",
-    "application"
-  ],
-  "author": "Justin Fuller",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JustinDFuller/compose-app/issues"
-  },
-  "homepage": "https://github.com/JustinDFuller/compose-app#readme",
-  "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "bluebird": "^3.5.1",
-    "body-parser": "^1.18.2",
-    "bunyan": "^1.8.12",
-    "compression": "^1.7.1",
-    "cookie-parser": "^1.4.3",
-    "cookie-session": "^2.0.0-beta.3",
-    "cors": "^2.8.4",
-    "dotenv": "^4.0.0",
-    "express": "^4.16.2",
-    "helmet": "^3.9.0",
-    "immutable": "^3.8.2",
-    "lodash": "^4.17.4",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "socket.io": "^2.0.4",
-    "whatwg-fetch": "^2.0.3"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "html-webpack-plugin": "^2.30.1",
-    "webpack": "^3.8.1"
-  }
+    "name": "compose-app",
+    "version": "1.0.0",
+    "description": "Create an app with function composition",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "babel src --out-dir dist --copy-files --source-maps && webpack && node dist",
+        "prod": "babel src --out-dir dist --copy-files --source-maps && webpack -p && node dist",
+        "dev": "concurrently \"babel-watch src\" \"webpack --watch --progress\" "
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JustinDFuller/compose-app.git"
+    },
+    "keywords": [
+        "functional",
+        "node",
+        "composition",
+        "javascript",
+        "application"
+    ],
+    "author": "Justin Fuller",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/JustinDFuller/compose-app/issues"
+    },
+    "homepage": "https://github.com/JustinDFuller/compose-app#readme",
+    "dependencies": {
+        "babel-polyfill": "^6.26.0",
+        "bluebird": "^3.5.1",
+        "body-parser": "^1.18.2",
+        "bunyan": "^1.8.12",
+        "compression": "^1.7.1",
+        "cookie-parser": "^1.4.3",
+        "cookie-session": "^2.0.0-beta.3",
+        "cors": "^2.8.4",
+        "dotenv": "^4.0.0",
+        "express": "^4.16.2",
+        "helmet": "^3.9.0",
+        "immutable": "^3.8.2",
+        "lodash": "^4.17.4",
+        "react": "^16.0.0",
+        "react-dom": "^16.0.0",
+        "sequelize": "^4.22.6",
+        "socket.io": "^2.0.4",
+        "sqlite3": "^3.1.13",
+        "whatwg-fetch": "^2.0.3"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "babel-watch": "^2.0.7",
+        "concurrently": "^3.5.0",
+        "html-webpack-plugin": "^2.30.1",
+        "webpack": "^3.8.1",
+        "webpack-dev-server": "^2.9.4"
+    }
 }
