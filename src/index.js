@@ -14,7 +14,6 @@ const composedApp = [
   server,
   routes,
   sockets,
-  app => console.log(Object.keys(app)) || app,
   database(models),
   logger,
   dependencies,
