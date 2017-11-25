@@ -8,12 +8,14 @@ import models from './models';
 import logger from './utils/logger';
 import dependencies from './utils/dependencies';
 import config from './utils/config';
+import schema from './schema';
 
 // Called from bottom to top (right to left, composition style).
 const composedApp = [
   server,
   routes,
   sockets,
+  schema,
   database(models),
   logger,
   dependencies,

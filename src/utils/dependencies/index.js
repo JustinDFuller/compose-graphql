@@ -18,6 +18,7 @@ import Promise from 'bluebird';
 import Sequelize from 'sequelize';
 // import GraphqlSequelize from 'graphql-sequelize';
 import * as ApolloServer from 'apollo-server-express';
+import * as GraphqlTools from 'graphql-tools';
 
 const dependencies = {
   _,
@@ -32,6 +33,7 @@ const dependencies = {
   immutable,
   bodyParser,
   compression,
+  GraphqlTools,
   ApolloServer,
   cookieParser,
   cookieSession,
