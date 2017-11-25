@@ -16,6 +16,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Promise from 'bluebird';
 import Sequelize from 'sequelize';
+// import GraphqlSequelize from 'graphql-sequelize';
+import * as ApolloServer from 'apollo-server-express';
 
 const dependencies = {
   _,
@@ -30,9 +32,11 @@ const dependencies = {
   immutable,
   bodyParser,
   compression,
+  ApolloServer,
   cookieParser,
   cookieSession,
   ReactDOMServer,
+  // GraphqlSequelize,
   fs: Promise.promisifyAll(fs, { context: fs }),
   http: Promise.promisifyAll(http, { context: http }),
 };

@@ -8,7 +8,8 @@
         "start": "babel src --out-dir dist --copy-files --source-maps && webpack && node dist",
         "prod": "babel src --out-dir dist --copy-files --source-maps && webpack -p && node dist",
         "dev": "concurrently \"babel-watch src\" \"webpack --watch --progress\" ",
-        "lint": "eslint ./src/**/*.js --fix"
+        "lint": "eslint ./src/**/*.js --fix",
+        "server": "babel-watch src"
     },
     "repository": {
         "type": "git",
@@ -28,6 +29,7 @@
     },
     "homepage": "https://github.com/JustinDFuller/compose-app#readme",
     "dependencies": {
+        "apollo-server-express": "^1.2.0",
         "babel-polyfill": "^6.26.0",
         "bluebird": "^3.5.1",
         "body-parser": "^1.18.2",
@@ -38,6 +40,8 @@
         "cors": "^2.8.4",
         "dotenv": "^4.0.0",
         "express": "^4.16.2",
+        "graphql": "^0.11.7",
+        "graphql-sequelize": "^5.6.0",
         "helmet": "^3.9.0",
         "immutable": "^3.8.2",
         "lodash": "^4.17.4",
