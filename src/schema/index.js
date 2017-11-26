@@ -52,8 +52,6 @@ export default ({ dependencies, models }) => {
     Query[`findAndCountAll${key}s`] = (root, { offset, limit, ...where }, source, ast) => {
       const attributes = getRowsAttributeNames(ast);
 
-      console.log(attributes);
-
       return model.findAndCountAll({
         where,
         offset,
@@ -113,7 +111,7 @@ export default ({ dependencies, models }) => {
     type Query {
       findOneUser(id: ID!, username: String, email: String): User
       findUserById(id: ID!): User
-      findAndCountAllUsers(username: String): UserCount 
+      findAndCountAllUsers(limit: Int, offset: Int, username: String): UserCount 
     }
 
     type Mutation {
