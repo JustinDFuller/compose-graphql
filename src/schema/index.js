@@ -74,6 +74,22 @@ export default ({ dependencies, models }) => {
         raw: true,
       });
     };
+
+    Query[`count${key}s`] = (root, where) => model.count({
+      where,
+    }).then(count => ({ count }));
+
+    Query[`max${key}s`] = (root, { field, ...where }) => model.max(field, {
+      where,
+    });
+
+    Query[`min${key}s`] = (root, { field, ...where }) => model.min(field, {
+      where,
+    });
+
+    Query[`sum${key}s`] = (root, { field, ...where }) => model.sum(field, {
+      where,
+    });
   });
 
   console.log(Query);
@@ -123,11 +139,31 @@ export default ({ dependencies, models }) => {
       count: Int
     }
 
+    type Count {
+      count: Int
+    }
+
+    type Max {
+      max: Int
+    }
+
+    type Min {
+      min: Int
+    }
+
+    type Sum {
+      sum: Int
+    }
+
     type Query {
       findOneUser(id: ID!, username: String, email: String): User
       findUserById(id: ID!): User
       findAndCountAllUsers(limit: Int, offset: Int, username: String): UserCount 
       findAllUsers(limit: Int, offset: Int, username: String): [User] 
+      countUsers(username: String): Count
+      maxUsers(field: String): Max
+      minUsers(field: String): Min
+      sumUsers(field: String): Sum
     }
 
     type Mutation {
