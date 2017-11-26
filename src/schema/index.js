@@ -49,6 +49,17 @@ export default ({ dependencies, models }) => {
       });
     };
 
+    Query[`findAll${key}s`] = (root, { offset, limit, ...where }, source, ast) => {
+      const attributes = getAttributeNames(ast);
+
+      return model.findAll({
+        where,
+        offset,
+        limit,
+        attributes,
+      });
+    };
+
     Query[`findAndCountAll${key}s`] = (root, { offset, limit, ...where }, source, ast) => {
       const attributes = getRowsAttributeNames(ast);
 
@@ -112,6 +123,7 @@ export default ({ dependencies, models }) => {
       findOneUser(id: ID!, username: String, email: String): User
       findUserById(id: ID!): User
       findAndCountAllUsers(limit: Int, offset: Int, username: String): UserCount 
+      findAllUsers(limit: Int, offset: Int, username: String): [User] 
     }
 
     type Mutation {
