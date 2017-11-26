@@ -6,11 +6,26 @@ export default ({ dependencies, models }) => {
   const { fp, _ } = dependencies;
 
   const getLength = fp.get('length');
+  const getNames = fp.map('name.value');
+  const getFirstFieldNode = fp.get('fieldNodes[0]');
+  const getSelections = fp.get('selectionSet.selections');
+  const defaultToUndefined = attributes => (getLength(attributes) ? attributes : undefined);
 
   const getAttributeNames = fp.compose(
-    attributes => (getLength(attributes) ? attributes : undefined),
-    fp.map('name.value'),
-    fp.get('fieldNodes[0].selectionSet.selections'),
+    defaultToUndefined,
+    getNames,
+    getSelections,
+    getFirstFieldNode,
+  );
+
+  const getRowsAttributeNames = fp.compose(
+    defaultToUndefined,
+    getNames,
+    getSelections,
+    fp.head,
+    fp.filter(selection => _.get(selection, 'name.value') === 'rows'),
+    getSelections,
+    getFirstFieldNode,
   );
 
 
@@ -34,11 +49,18 @@ export default ({ dependencies, models }) => {
       });
     };
 
-    Query[`findAndCountAll${key}s`] = (root, { offset, limit, ...where }) => model.findAndCountAll({
-      where,
-      offset,
-      limit,
-    });
+    Query[`findAndCountAll${key}s`] = (root, { offset, limit, ...where }, source, ast) => {
+      const attributes = getRowsAttributeNames(ast);
+
+      console.log(attributes);
+
+      return model.findAndCountAll({
+        where,
+        offset,
+        limit,
+        attributes,
+      });
+    };
   });
 
   console.log(Query);
