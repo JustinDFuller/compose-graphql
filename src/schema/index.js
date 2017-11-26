@@ -3,13 +3,23 @@ export default ({ dependencies, models }) => {
     makeExecutableSchema,
     // addMockFunctionsToSchema,
   } = dependencies.GraphqlTools;
+  const { fp } = dependencies;
+
+  const getAttributeNames = fp.compose(
+    fp.map('name.value'),
+    fp.get('fieldNodes[0].selectionSet.selections'),
+  );
+
+  const getLength = fp.get('length');
 
   const resolvers = {
     Query: {
-      user(root, args, ...rest) {
-        console.log(...rest, root, args);
+      user(root, args, source, ast) {
+        const attributes = getAttributeNames(ast);
+
         return models.User.findOne({
           where: { ...args },
+          attributes: getLength(attributes) ? attributes : undefined,
         });
       },
     },

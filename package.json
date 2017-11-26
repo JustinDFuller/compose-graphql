@@ -9,7 +9,7 @@
         "prod": "babel src --out-dir dist --copy-files --source-maps && webpack -p && node dist",
         "dev": "concurrently \"babel-watch src\" \"webpack --watch --progress\" ",
         "lint": "eslint ./src/**/*.js --fix",
-        "server": "babel-watch src"
+        "server": "babel-watch src/index.js"
     },
     "repository": {
         "type": "git",
