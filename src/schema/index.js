@@ -38,6 +38,7 @@ export default ({ dependencies, models }) => {
       return model.findOne({
         where,
         attributes,
+        raw: true,
       });
     };
 
@@ -46,6 +47,7 @@ export default ({ dependencies, models }) => {
 
       return model.findById(where.id, {
         attributes,
+        raw: true,
       });
     };
 
@@ -57,6 +59,7 @@ export default ({ dependencies, models }) => {
         offset,
         limit,
         attributes,
+        raw: true,
       });
     };
 
@@ -68,6 +71,7 @@ export default ({ dependencies, models }) => {
         offset,
         limit,
         attributes,
+        raw: true,
       });
     };
   });
