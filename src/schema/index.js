@@ -33,6 +33,12 @@ export default ({ dependencies, models }) => {
         attributes,
       });
     };
+
+    Query[`findAndCountAll${key}s`] = (root, { offset, limit, ...where }) => model.findAndCountAll({
+      where,
+      offset,
+      limit,
+    });
   });
 
   console.log(Query);
@@ -77,9 +83,15 @@ export default ({ dependencies, models }) => {
       created: String
     }
 
+    type UserCount {
+      rows: [User]
+      count: Int
+    }
+
     type Query {
       findOneUser(id: ID!, username: String, email: String): User
       findUserById(id: ID!): User
+      findAndCountAllUsers(username: String): UserCount 
     }
 
     type Mutation {
