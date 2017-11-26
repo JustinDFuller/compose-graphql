@@ -16,7 +16,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Promise from 'bluebird';
 import Sequelize from 'sequelize';
-// import GraphqlSequelize from 'graphql-sequelize';
+import * as graphql from 'graphql';
 import * as ApolloServer from 'apollo-server-express';
 import * as GraphqlTools from 'graphql-tools';
 
@@ -29,6 +29,7 @@ const dependencies = {
   helmet,
   bunyan,
   express,
+  graphql,
   Sequelize,
   immutable,
   bodyParser,

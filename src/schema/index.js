@@ -3,26 +3,70 @@ export default ({ dependencies, models }) => {
     makeExecutableSchema,
     // addMockFunctionsToSchema,
   } = dependencies.GraphqlTools;
-  const { fp } = dependencies;
+  const { fp, _ } = dependencies;
+
+  const getLength = fp.get('length');
 
   const getAttributeNames = fp.compose(
+    attributes => (getLength(attributes) ? attributes : undefined),
     fp.map('name.value'),
     fp.get('fieldNodes[0].selectionSet.selections'),
   );
 
-  const getLength = fp.get('length');
+
+  const Query = {};
+
+  _.forEach(models, (model, key) => {
+    Query[`findOne${key}`] = (root, where, source, ast) => {
+      const attributes = getAttributeNames(ast);
+
+      return model.findOne({
+        where,
+        attributes,
+      });
+    };
+
+    Query[`find${key}ById`] = (root, where, source, ast) => {
+      const attributes = getAttributeNames(ast);
+
+      return model.findById(where.id, {
+        attributes,
+      });
+    };
+  });
+
+  console.log(Query);
+
+  const Mutation = {};
+
+  _.forEach(models, (model, key) => {
+    Mutation[`upsert${key}`] = async (root, where, ...rest) => {
+      await model.upsert(where);
+      return model.findOne(root, where, ...rest);
+    };
+
+    Mutation[`findOrCreate${key}`] = async (root, where, source, ast) => {
+      const attributes = getAttributeNames(ast);
+      return model.findOrCreate({
+        where,
+        defaults: where,
+        attributes: attributes && attributes.filter(a => a !== 'created'),
+      }).spread((res, created) => ({
+        ...res.get({
+          plain: true,
+        }),
+        created,
+      }));
+    };
+
+    Mutation[`create${key}`] = (root, where) => model.create(where);
+  });
+
+  console.log(Mutation);
 
   const resolvers = {
-    Query: {
-      user(root, args, source, ast) {
-        const attributes = getAttributeNames(ast);
-
-        return models.User.findOne({
-          where: { ...args },
-          attributes: getLength(attributes) ? attributes : undefined,
-        });
-      },
-    },
+    Query,
+    Mutation,
   };
 
   const typeDefs = `
@@ -30,10 +74,18 @@ export default ({ dependencies, models }) => {
       username: String
       email: String
       password: String
+      created: String
     }
 
     type Query {
-      user(username: String, email: String): User
+      findOneUser(id: ID!, username: String, email: String): User
+      findUserById(id: ID!): User
+    }
+
+    type Mutation {
+      upsertUser(username: String!, email: String): User
+      findOrCreateUser(username: String!, email: String): User
+      createUser(username: String!, email: String): User
     }
   `;
 
