@@ -126,19 +126,7 @@ export default ({ dependencies, models }) => {
     Mutation,
   };
 
-  const typeDefs = `
-    type User {
-      username: String
-      email: String
-      password: String
-      created: String
-    }
-
-    type UserCount {
-      rows: [User]
-      count: Int
-    }
-
+  let typeDefs = `
     type Count {
       count: Int
     }
@@ -154,24 +142,44 @@ export default ({ dependencies, models }) => {
     type Sum {
       sum: Int
     }
-
-    type Query {
-      findOneUser(id: ID!, username: String, email: String): User
-      findUserById(id: ID!): User
-      findAndCountAllUsers(limit: Int, offset: Int, username: String): UserCount 
-      findAllUsers(limit: Int, offset: Int, username: String): [User] 
-      countUsers(username: String): Count
-      maxUsers(field: String): Max
-      minUsers(field: String): Min
-      sumUsers(field: String): Sum
-    }
-
-    type Mutation {
-      upsertUser(username: String!, email: String): User
-      findOrCreateUser(username: String!, email: String): User
-      createUser(username: String!, email: String): User
-    }
   `;
+
+  _.forEach(models, (value, key) => {
+    console.dir(value.attributes);
+    typeDefs += `
+      type ${key} {
+        id: String
+        username: String
+        email: String
+        password: String
+        created: String
+      }
+
+      type ${key}sWithCount {
+        rows: [${key}] 
+        count: Int
+      }
+
+      type Query {
+        findOne${key}(id: ID!, username: String, email: String): ${key}
+        find${key}ById(id: ID!): ${key}
+        findAndCountAll${key}s(limit: Int, offset: Int, username: String): ${key}sWithCount 
+        findAll${key}s(limit: Int, offset: Int, username: String): [${key}] 
+        count${key}s(username: String): Count
+        max${key}s(field: String): Max
+        min${key}s(field: String): Min
+        sum${key}s(field: String): Sum
+      }
+
+      type Mutation {
+        upsert${key}(username: String!, email: String): ${key}
+        findOrCreate${key}(username: String!, email: String): ${key}
+        create${key}(username: String!, email: String): ${key}
+      }
+    `;
+  });
+
+  console.log(typeDefs);
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
 
